@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J rugd_train_mask2_swin-b
+#SBATCH -p gpu
+#SBATCH -o rugd_standard_mask2_swin-b_%j.txt
+#SBATCH -e rugd_error_mask2_swin-b_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=30:00:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/train.py configs/mask2former/mask2former_swin-b-in1k-384x384-pre_8xb2-160k_rugd_all-640x640.py

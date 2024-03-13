@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J forestsim_train_deeplabV3plus_r50
+#SBATCH -p gpu
+#SBATCH -o forestsim_standard_deeplabV3plus_r50_%j.txt
+#SBATCH -e forestsim_error_deeplabV3plus_r50_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=10:00:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/train.py configs/deeplabv3plus/deeplabv3plus_r50-d8_4xb4-40k_forestsim_all-512x512.py

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J forestsim_all_test
+#SBATCH -p gpu
+#SBATCH -o forestsim_all_test_standard_%j.txt
+#SBATCH -e forestsim_all_test_error_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=00:030:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/test.py configs/mask2former/mask2former_swin-l-in22k-384x384-pre_8xb2-160k_forestsim_all-640x640.py work_dirs/mask2former_swin-l-in22k-384x384-pre_8xb2-160k_forestsim_all-640x640/iter_160000.pth --out results/mask2former_swin_l

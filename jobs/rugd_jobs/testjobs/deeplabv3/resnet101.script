@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J rugd_all_test
+#SBATCH -p gpu
+#SBATCH -o rugd_all_test_standard_%j.txt
+#SBATCH -e rugd_all_test_error_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=00:030:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program #iterations run is actually 40k, misnamed here, may need to rerun a model with 160k
+python tools/test.py configs/deeplabV3/deeplabv3_r101-d8_4xb4-160k_rugd_all-512x512.py work_dirs/deeplabv3_r101-d8_4xb4-160k_rugd_all-512x512/iter_40000.pth --out results/deeplab_resnet101

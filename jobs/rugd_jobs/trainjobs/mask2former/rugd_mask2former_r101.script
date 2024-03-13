@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J rugd_train_mask2_r101
+#SBATCH -p gpu
+#SBATCH -o rugd_standard_mask2_r101_%j.txt
+#SBATCH -e rugd_error_mask2_r101_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=20:00:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/train.py configs/mask2former/mask2former_r101_8xb2-160k_rugd_all-512x512.py

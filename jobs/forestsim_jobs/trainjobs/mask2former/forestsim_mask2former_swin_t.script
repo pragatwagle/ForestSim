@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J forestsim_train_mask2_swin-t
+#SBATCH -p gpu
+#SBATCH -o forestsim_standard_mask2_swin-t_%j.txt
+#SBATCH -e forestsim_error_mask2_swin-t_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=30:00:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/train.py configs/mask2former/mask2former_swin-t_8xb2-160k_forestsim_all-512x512.py

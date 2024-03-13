@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J mixed_train_mask2_swin-b
+#SBATCH -p gpu
+#SBATCH -o mixed_standard_mask2_swin-b_%j.txt
+#SBATCH -e mixed_error_mask2_swin-b_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=30:00:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/train.py configs/mask2former/mask2former_swin-b-in1k-384x384-pre_8xb2-160k_mixed-640x640.py

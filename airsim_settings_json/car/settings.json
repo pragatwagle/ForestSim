@@ -1,0 +1,66 @@
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/main/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "CameraDefaults": {
+      "CaptureSettings": [
+        {
+          "ImageType": 0,
+          "Width": 2048,
+          "Height": 1024,
+          "FOV_Degrees": 90,
+          "AutoExposureSpeed": 100,
+          "MotionBlurAmount": 0
+        },
+        {
+          "ImageType": 2,
+          "Width": 2048,
+          "Height": 1024,
+          "FOV_Degrees": 90,
+          "AutoExposureSpeed": 100,
+          "MotionBlurAmount": 0
+        },
+        {
+          "ImageType": 5,
+          "Width": 2048,
+          "Height": 1024,
+          "FOV_Degrees": 90,
+          "AutoExposureSpeed": 100,
+          "MotionBlurAmount": 0
+        }
+    ]
+  },
+  "ViewMode": "SpringArmChase",
+  "SimMode": "Car",
+  "ClockSpeed": 1.0,
+  "Vehicles": {
+      "Car1": {
+          "VehicleType": "PhysXCar",
+          "EnableCollisionPassthrough": true,
+          "EnableCollisions": false,
+          "Cameras": {
+            "fpv": {
+                "CaptureSettings": [
+                  {
+                    "PublishToRos": 1,
+                    "ImageType": 0,
+                    "Width": 672,
+                    "Height": 376,
+                    "FOV_Degrees": 90,
+                    "TargetGamma": 1.5
+                  }
+                ],
+              "X": 0.50, "Y": 0, "Z": 0.10,
+              "Pitch": 0, "Roll": 0, "Yaw": 0
+            }
+          },
+          "X": 0, "Y": 0, "Z": -1, "Yaw": 0
+      }
+  },
+  "SegmentationSettings": {
+      "MeshNamingMethod": "StaticMeshName",
+      "OverrideExisting": true
+  },
+  "SubWindows": [
+      {"WindowID": 0, "ImageType": 0, "CameraName": "fpv", "Visible": true}
+  ]
+}

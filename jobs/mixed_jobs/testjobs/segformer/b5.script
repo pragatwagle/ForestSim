@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J mixed_test
+#SBATCH -p gpu
+#SBATCH -o mixed_test_standard_%j.txt
+#SBATCH -e mixed_test_error_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=pwagle@iu.edu
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-node 4
+#SBATCH --time=00:030:00
+#SBATCH -A r00338
+
+#Load any modules that your program needs
+module load python/gpu
+
+#Run your program
+python tools/test.py configs/segformer/segformer_mit-b5_8xb2-160k_mixed-512x512.py work_dirs/segformer_mit-b5_8xb2-160k_mixed-512x512/iter_160000.pth --out results/segformer_b5
